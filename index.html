@@ -1,57 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#09090f">
-  <meta name="color-scheme" content="dark">
-  <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; frame-src 'none'; media-src 'none'; font-src 'self'; upgrade-insecure-requests">
-  <title>Secure Instagram Handoff</title>
-  <link rel="stylesheet" href="styles.css?v=6">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#08080d"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self';base-uri 'none';object-src 'none';frame-ancestors 'none';script-src 'self';style-src 'self';img-src 'self' data:;connect-src 'none';form-action 'none';font-src 'self'">
+<title>Secure Form Launcher — Guided Signup</title><link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
-  <main class="shell" aria-labelledby="pageTitle">
-    <section class="card" id="introStep">
-      <div class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 64 64" role="img"><defs><linearGradient id="igGradient" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".25" stop-color="#fa7e1e"/><stop offset=".55" stop-color="#d62976"/><stop offset=".8" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect x="3" y="3" width="58" height="58" rx="18" fill="url(#igGradient)"/><rect x="17" y="17" width="30" height="30" rx="9" fill="none" stroke="white" stroke-width="4"/><circle cx="32" cy="32" r="7" fill="none" stroke="white" stroke-width="4"/><circle cx="43" cy="21" r="2.6" fill="white"/></svg>
-      </div>
-      <p class="eyebrow">INDEPENDENT WEB UTILITY</p>
-      <h1 id="pageTitle">Continue securely</h1>
-      <p class="hint">This tool only provides a safe handoff to Instagram. Your Instagram password, verification codes, session cookies, and authentication tokens are never requested, stored, or sent by this site.</p>
-      <div class="trust-list" aria-label="Security properties">
-        <div><span aria-hidden="true">✓</span><span>No credential collection</span></div>
-        <div><span aria-hidden="true">✓</span><span>No CAPTCHA bypass or automation</span></div>
-        <div><span aria-hidden="true">✓</span><span>Direct interaction with Instagram</span></div>
-      </div>
-      <button class="primary" id="continueButton" type="button">Continue to Instagram <span aria-hidden="true">↗</span></button>
-      <p class="fine-print">Instagram is a trademark of Meta Platforms, Inc. This independent utility is not affiliated with or endorsed by Instagram or Meta.</p>
-      <p class="status" id="introStatus" aria-live="polite"></p>
-    </section>
-
-    <section class="card hidden" id="captchaStep" aria-labelledby="captchaTitle">
-      <div class="stepbar"><button class="back" id="backButton" type="button">← Back</button><span>STEP 2 OF 2</span></div>
-      <div class="brand-mark small" aria-hidden="true">
-        <svg viewBox="0 0 64 64"><rect x="3" y="3" width="58" height="58" rx="18" fill="#e1306c"/><rect x="17" y="17" width="30" height="30" rx="9" fill="none" stroke="white" stroke-width="4"/><circle cx="32" cy="32" r="7" fill="none" stroke="white" stroke-width="4"/><circle cx="43" cy="21" r="2.6" fill="white"/></svg>
-      </div>
-      <h2 id="captchaTitle">Complete security checks in Instagram</h2>
-      <p class="hint">If Instagram shows a CAPTCHA or security challenge, complete it yourself in the official Instagram page. This tool does not solve, bypass, or automate any security check.</p>
-      <div class="browser-frame" aria-label="Instagram handoff preview">
-        <div class="browser-bar"><span class="traffic" aria-hidden="true">● ● ●</span><span class="address">instagram.com</span></div>
-        <div class="browser-body">
-          <div class="captcha-placeholder">
-            <div class="shield" aria-hidden="true">✓</div>
-            <strong>Security check</strong>
-            <span>Complete any CAPTCHA or verification directly on Instagram.</span>
-            <a class="secondary" href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer">Open Instagram</a>
-          </div>
-        </div>
-      </div>
-      <button class="primary" id="confirmButton" type="button">I completed the check</button>
-      <p class="status" id="captchaStatus" aria-live="polite"></p>
-      <p class="fine-print">This button records only your local acknowledgement. It does not verify that Instagram accepted or completed a CAPTCHA.</p>
-    </section>
-  </main>
-  <script src="app.js?v=6" defer></script>
-</body>
-</html>
+<main class="app" aria-labelledby="title">
+<header class="topbar"><div class="brand"><span class="brand-icon" aria-hidden="true">◎</span><div><strong>Secure Form Launcher</strong><span>Independent browser-style assistant</span></div></div><span class="secure-pill">LOCAL ONLY</span></header>
+<section class="workspace">
+<div class="hero"><div class="eyebrow">SAFE HANDOFF • NO CREDENTIAL CAPTURE</div><h1 id="title">Prepare your signup.<br><em>Finish it on Instagram.</em></h1><p>Use this lightweight browser-style workspace to prepare non-sensitive details. Your password, OTP, cookies and CAPTCHA stay entirely on Instagram.</p></div>
+<div class="steps" aria-label="Progress"><div class="step active"><b>01</b><span>Prepare</span></div><div class="line"></div><div class="step"><b>02</b><span>Instagram</span></div><div class="line"></div><div class="step"><b>03</b><span>Finish</span></div></div>
+<section class="panel" id="preparePanel">
+<div class="panel-head"><div><span class="kicker">STEP 01</span><h2>Signup details</h2></div><span class="memory">In-memory only</span></div>
+<form id="prepForm" novalidate>
+<div class="grid"><label>Email <input id="email" name="email" type="email" autocomplete="off" inputmode="email" placeholder="you@example.com"></label><label>Full name <input id="fullName" name="fullName" type="text" autocomplete="off" placeholder="Your name"></label><label>Username <input id="username" name="username" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="your_username"></label><label>Date of birth <input id="dob" name="dob" type="date" autocomplete="off"></label></div>
+<div class="notice"><span aria-hidden="true">⌁</span><div><strong>Password is never entered here.</strong><p>Do not paste a password, OTP, recovery code or session token into this page. Instagram will ask for sensitive credentials on its own official page.</p></div></div>
+<div class="actions"><button class="primary" type="submit">Open guided browser <span>↗</span></button><button class="ghost" type="button" id="clearBtn">Clear</button></div><p class="status" id="status" role="status" aria-live="polite"></p>
+</form></section>
+<section class="browser-panel" id="browserPanel" hidden aria-labelledby="browserTitle">
+<div class="browser-chrome"><div class="traffic"><i></i><i></i><i></i></div><div class="address"><span>🔒</span> instagram.com/accounts/signup/</div><button type="button" id="openBtn" class="chrome-open">Open official ↗</button></div>
+<div class="browser-content"><div class="site-head"><div class="ig-mark" aria-hidden="true">◎</div><div><span class="kicker">OFFICIAL SITE HANDOFF</span><h2 id="browserTitle">Continue on Instagram</h2></div></div>
+<div class="handoff-grid"><div class="preview-card"><span class="mini-label">PREPARED LOCALLY</span><div id="summary"></div><p class="muted">These details are only shown in this page's memory. They are not sent to this tool's server.</p></div><div class="check-card"><span class="mini-label">SECURITY CHECK</span><h3>Complete Instagram's checks yourself</h3><ol><li>Open the official Instagram page.</li><li>Enter your password only there.</li><li>Complete any CAPTCHA or verification yourself.</li><li>Return here only if you want to read the completion checklist.</li></ol><button class="primary" type="button" id="doneBtn">I finished on Instagram</button><p class="status" id="doneStatus" role="status" aria-live="polite"></p></div></div>
+</div></section>
+<footer><span>Instagram is a trademark of Meta Platforms, Inc.</span><span>This independent utility is not affiliated with or endorsed by Instagram or Meta.</span></footer>
+</section></main><script src="app.js?v=7" defer></script>
+</body></html>

@@ -1,34 +1,7 @@
-const introStep = document.getElementById('introStep');
-const captchaStep = document.getElementById('captchaStep');
-const continueButton = document.getElementById('continueButton');
-const backButton = document.getElementById('backButton');
-const confirmButton = document.getElementById('confirmButton');
-const introStatus = document.getElementById('introStatus');
-const captchaStatus = document.getElementById('captchaStatus');
-const instagramUrl = 'https://www.instagram.com/accounts/login/';
-
-function openInstagram() {
-  const opened = window.open(instagramUrl, '_blank', 'noopener,noreferrer');
-  if (!opened) {
-    introStatus.textContent = 'Instagram could not be opened automatically. Use the Open Instagram button on the next screen.';
-  }
-}
-
-continueButton?.addEventListener('click', () => {
-  introStatus.textContent = '';
-  introStep?.classList.add('hidden');
-  captchaStep?.classList.remove('hidden');
-  captchaStep?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  openInstagram();
-});
-
-backButton?.addEventListener('click', () => {
-  captchaStep?.classList.add('hidden');
-  introStep?.classList.remove('hidden');
-  introStatus.textContent = '';
-  continueButton?.focus();
-});
-
-confirmButton?.addEventListener('click', () => {
-  captchaStatus.textContent = 'Acknowledged locally. CAPTCHA completion is not verified by this tool.';
-});
+const INSTAGRAM_SIGNUP='https://www.instagram.com/accounts/emailsignup/';
+const form=document.getElementById('prepForm');const panel=document.getElementById('browserPanel');const status=document.getElementById('status');const summary=document.getElementById('summary');const doneStatus=document.getElementById('doneStatus');
+const value=id=>document.getElementById(id)?.value.trim()||'';
+function safe(text){const el=document.createElement('span');el.textContent=text;return el.innerHTML}
+function openOfficial(){const win=window.open(INSTAGRAM_SIGNUP,'_blank','noopener,noreferrer');if(!win) status.textContent='Your browser blocked the new tab. Use the “Open official” button in the browser panel.'}
+form?.addEventListener('submit',e=>{e.preventDefault();status.textContent='';const email=value('email'),username=value('username'),name=value('fullName'),dob=value('dob');if(email&&!/^\S+@\S+\.\S+$/.test(email)){status.textContent='Enter a valid email address or leave it blank.';return}summary.innerHTML=[['Email',email||'Not prepared'],['Full name',name||'Not prepared'],['Username',username||'Not prepared'],['Date of birth',dob||'Not prepared']].map(([k,v])=>`<div class="summary-row"><span>${k}</span><span>${safe(v)}</span></div>`).join('');panel.hidden=false;panel.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(openOfficial,150)});
+document.getElementById('openBtn')?.addEventListener('click',openOfficial);document.getElementById('clearBtn')?.addEventListener('click',()=>{form.reset();summary.innerHTML='';panel.hidden=true;status.textContent='Local form cleared.';});document.getElementById('doneBtn')?.addEventListener('click',()=>{doneStatus.textContent='Acknowledged locally. This button does not verify Instagram account creation, CAPTCHA, or authentication.';});
