@@ -1,7 +1,59 @@
-const INSTAGRAM_SIGNUP='https://www.instagram.com/accounts/emailsignup/';
-const form=document.getElementById('prepForm');const panel=document.getElementById('browserPanel');const status=document.getElementById('status');const summary=document.getElementById('summary');const doneStatus=document.getElementById('doneStatus');
-const value=id=>document.getElementById(id)?.value.trim()||'';
-function safe(text){const el=document.createElement('span');el.textContent=text;return el.innerHTML}
-function openOfficial(){const win=window.open(INSTAGRAM_SIGNUP,'_blank','noopener,noreferrer');if(!win) status.textContent='Your browser blocked the new tab. Use the “Open official” button in the browser panel.'}
-form?.addEventListener('submit',e=>{e.preventDefault();status.textContent='';const email=value('email'),username=value('username'),name=value('fullName'),dob=value('dob');if(email&&!/^\S+@\S+\.\S+$/.test(email)){status.textContent='Enter a valid email address or leave it blank.';return}summary.innerHTML=[['Email',email||'Not prepared'],['Full name',name||'Not prepared'],['Username',username||'Not prepared'],['Date of birth',dob||'Not prepared']].map(([k,v])=>`<div class="summary-row"><span>${k}</span><span>${safe(v)}</span></div>`).join('');panel.hidden=false;panel.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(openOfficial,150)});
-document.getElementById('openBtn')?.addEventListener('click',openOfficial);document.getElementById('clearBtn')?.addEventListener('click',()=>{form.reset();summary.innerHTML='';panel.hidden=true;status.textContent='Local form cleared.';});document.getElementById('doneBtn')?.addEventListener('click',()=>{doneStatus.textContent='Acknowledged locally. This button does not verify Instagram account creation, CAPTCHA, or authentication.';});
+const API_BASE = window.SECURE_BROWSER_API || '';
+const SIGNUP_URL = 'https://www.instagram.com/accounts/emailsignup/';
+
+const $ = (id) => document.getElementById(id);
+const state = { sessionId: null };
+
+function values() {
+  return {
+    email: $('email').value.trim(),
+    fullName: $('fullName').value.trim(),
+    username: $('username').value.trim(),
+    dob: $('dob').value
+  };
+}
+
+function setConnection(text, live = false) {
+  $('connection').textContent = text;
+  $('connection').style.color = live ? '#9fe6b2' : '';
+}
+
+function setError(message = '') { $('error').textContent = message; }
+
+async function startBrowser() {
+  setError('');
+  const data = values();
+  if (!data.email) { setError('Email is required.'); return; }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) { setError('Enter a valid email.'); return; }
+
+  $('start').disabled = true;
+  $('start').textContent = 'Starting…';
+  try {
+    const response = await fetch(`${API_BASE}/api/browser/session`, {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ ...data, targetUrl: SIGNUP_URL })
+    });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || 'Unable to start browser session.');
+    state.sessionId = payload.sessionId;
+    $('empty').classList.add('hidden');
+    $('browser').classList.remove('hidden');
+    $('url').textContent = SIGNUP_URL;
+    $('status').textContent = payload.status || 'Browser ready. Enter password and CAPTCHA manually.';
+    $('live').href = payload.liveUrl || '#';
+    if (!payload.liveUrl) $('live').style.display = 'none';
+    $('viewer').src = payload.viewerUrl || payload.liveUrl || 'about:blank';
+    setConnection('Cloud browser connected', true);
+  } catch (error) {
+    setError(error.message);
+    setConnection('Disconnected');
+  } finally {
+    $('start').disabled = false;
+    $('start').textContent = 'Start cloud browser';
+  }
+}
+
+$('start').addEventListener('click', startBrowser);
+$('clear').addEventListener('click', () => {
+  ['email','fullName','username','dob'].forEach(id => $(id).value = '');
+  setError('');
+});

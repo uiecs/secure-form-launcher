@@ -1,0 +1,8 @@
+{
+  "name": "secure-form-launcher-server",
+  "private": true,
+  "type": "module",
+  "scripts": {"start":"node index.js"},
+  "engines": {"node":">=20"},
+  "dependencies": {"@browserbasehq/sdk":"^2.0.0","playwright-core":"^1.55.0"}
+}

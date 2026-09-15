@@ -1,28 +1,58 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#08080d"><meta name="color-scheme" content="dark"><meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self';base-uri 'none';object-src 'none';frame-ancestors 'none';script-src 'self';style-src 'self';img-src 'self' data:;connect-src 'none';form-action 'none';font-src 'self'">
-<title>Secure Form Launcher — Guided Signup</title><link rel="stylesheet" href="styles.css?v=7">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Secure Cloud Browser</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main class="app" aria-labelledby="title">
-<header class="topbar"><div class="brand"><span class="brand-icon" aria-hidden="true">◎</span><div><strong>Secure Form Launcher</strong><span>Independent browser-style assistant</span></div></div><span class="secure-pill">LOCAL ONLY</span></header>
-<section class="workspace">
-<div class="hero"><div class="eyebrow">SAFE HANDOFF • NO CREDENTIAL CAPTURE</div><h1 id="title">Prepare your signup.<br><em>Finish it on Instagram.</em></h1><p>Use this lightweight browser-style workspace to prepare non-sensitive details. Your password, OTP, cookies and CAPTCHA stay entirely on Instagram.</p></div>
-<div class="steps" aria-label="Progress"><div class="step active"><b>01</b><span>Prepare</span></div><div class="line"></div><div class="step"><b>02</b><span>Instagram</span></div><div class="line"></div><div class="step"><b>03</b><span>Finish</span></div></div>
-<section class="panel" id="preparePanel">
-<div class="panel-head"><div><span class="kicker">STEP 01</span><h2>Signup details</h2></div><span class="memory">In-memory only</span></div>
-<form id="prepForm" novalidate>
-<div class="grid"><label>Email <input id="email" name="email" type="email" autocomplete="off" inputmode="email" placeholder="you@example.com"></label><label>Full name <input id="fullName" name="fullName" type="text" autocomplete="off" placeholder="Your name"></label><label>Username <input id="username" name="username" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="your_username"></label><label>Date of birth <input id="dob" name="dob" type="date" autocomplete="off"></label></div>
-<div class="notice"><span aria-hidden="true">⌁</span><div><strong>Password is never entered here.</strong><p>Do not paste a password, OTP, recovery code or session token into this page. Instagram will ask for sensitive credentials on its own official page.</p></div></div>
-<div class="actions"><button class="primary" type="submit">Open guided browser <span>↗</span></button><button class="ghost" type="button" id="clearBtn">Clear</button></div><p class="status" id="status" role="status" aria-live="polite"></p>
-</form></section>
-<section class="browser-panel" id="browserPanel" hidden aria-labelledby="browserTitle">
-<div class="browser-chrome"><div class="traffic"><i></i><i></i><i></i></div><div class="address"><span>🔒</span> instagram.com/accounts/signup/</div><button type="button" id="openBtn" class="chrome-open">Open official ↗</button></div>
-<div class="browser-content"><div class="site-head"><div class="ig-mark" aria-hidden="true">◎</div><div><span class="kicker">OFFICIAL SITE HANDOFF</span><h2 id="browserTitle">Continue on Instagram</h2></div></div>
-<div class="handoff-grid"><div class="preview-card"><span class="mini-label">PREPARED LOCALLY</span><div id="summary"></div><p class="muted">These details are only shown in this page's memory. They are not sent to this tool's server.</p></div><div class="check-card"><span class="mini-label">SECURITY CHECK</span><h3>Complete Instagram's checks yourself</h3><ol><li>Open the official Instagram page.</li><li>Enter your password only there.</li><li>Complete any CAPTCHA or verification yourself.</li><li>Return here only if you want to read the completion checklist.</li></ol><button class="primary" type="button" id="doneBtn">I finished on Instagram</button><p class="status" id="doneStatus" role="status" aria-live="polite"></p></div></div>
-</div></section>
-<footer><span>Instagram is a trademark of Meta Platforms, Inc.</span><span>This independent utility is not affiliated with or endorsed by Instagram or Meta.</span></footer>
-</section></main><script src="app.js?v=7" defer></script>
-</body></html>
+  <main class="shell">
+    <header class="topbar">
+      <div><span class="eyebrow">SECURE WORKSPACE</span><h1>Cloud Browser Signup</h1></div>
+      <span id="connection" class="pill">Disconnected</span>
+    </header>
+
+    <section class="grid">
+      <aside class="panel setup">
+        <h2>Prepare</h2>
+        <p class="muted">These values are sent only to your browser-session service to fill non-sensitive fields.</p>
+        <label>Email<input id="email" type="email" autocomplete="off"></label>
+        <label>Full name<input id="fullName" type="text" autocomplete="off"></label>
+        <label>Username<input id="username" type="text" autocomplete="off"></label>
+        <label>Date of birth<input id="dob" type="date" autocomplete="off"></label>
+        <button id="start" class="primary">Start cloud browser</button>
+        <button id="clear" class="secondary">Clear</button>
+        <div class="notice"><strong>Manual-only:</strong> password, CAPTCHA, OTP, cookies and session tokens never enter this app.</div>
+      </aside>
+
+      <section class="panel browser-panel">
+        <div class="browser-head">
+          <div class="traffic"><i></i><i></i><i></i></div>
+          <div id="url" class="url">No browser session</div>
+        </div>
+        <div id="empty" class="empty">
+          <div class="empty-icon">⌁</div>
+          <h2>Cloud browser is idle</h2>
+          <p>Start a session to open the official signup page in a remote browser.</p>
+        </div>
+        <div id="browser" class="browser-view hidden">
+          <div class="handoff">
+            <div><strong>Remote browser ready</strong><span id="status">Waiting for manual steps.</span></div>
+            <a id="live" class="live-link" target="_blank" rel="noopener noreferrer">Open live browser</a>
+          </div>
+          <iframe id="viewer" title="Live cloud browser" allow="clipboard-read; clipboard-write"></iframe>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel checklist">
+      <div><span>01</span><strong>Automated</strong><p>Navigation and non-sensitive fields.</p></div>
+      <div><span>02</span><strong>You enter</strong><p>Password and CAPTCHA directly in the remote browser.</p></div>
+      <div><span>03</span><strong>Finish</strong><p>Complete the site flow yourself; this app does not verify credentials.</p></div>
+    </section>
+    <p id="error" class="error" role="alert"></p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
