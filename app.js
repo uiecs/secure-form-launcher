@@ -1,2 +1,34 @@
-const passwordStep=document.getElementById('passwordStep');const captchaStep=document.getElementById('captchaStep');const password=document.getElementById('password');const nextButton=document.getElementById('nextButton');const backButton=document.getElementById('backButton');const openButton=document.getElementById('openButton');const confirmButton=document.getElementById('confirmButton');const clearButton=document.getElementById('clearButton');const pasteButton=document.getElementById('pasteButton');const copyButton=document.getElementById('copyButton');const selectButton=document.getElementById('selectButton');const passwordStatus=document.getElementById('passwordStatus');const captchaStatus=document.getElementById('captchaStatus');const instagramUrl='https://www.instagram.com/accounts/emailsignup/';
-clearButton.addEventListener('click',()=>{password.value='';password.focus();passwordStatus.textContent='';});selectButton.addEventListener('click',()=>{password.focus();password.select();passwordStatus.textContent='Password selected.';});pasteButton.addEventListener('click',async()=>{try{password.value=await navigator.clipboard.readText();password.focus();passwordStatus.textContent='Pasted from clipboard.';}catch(e){password.focus();passwordStatus.textContent='Use your device Paste option in the password field.';}});copyButton.addEventListener('click',async()=>{if(!password.value){passwordStatus.textContent='Nothing to copy.';return}try{await navigator.clipboard.writeText(password.value);passwordStatus.textContent='Password copied to clipboard.';}catch(e){password.focus();password.select();passwordStatus.textContent='Copy is blocked by the browser. Use the keyboard copy option.';}});password.addEventListener('paste',()=>{passwordStatus.textContent='Password pasted.';});password.addEventListener('input',()=>{passwordStatus.textContent='';});nextButton.addEventListener('click',()=>{if(!password.value){passwordStatus.textContent='Please enter your password.';password.focus();return}passwordStatus.textContent='';passwordStep.classList.add('hidden');captchaStep.classList.remove('hidden');captchaStep.scrollIntoView({behavior:'smooth',block:'center'});window.open(instagramUrl,'_blank','noopener,noreferrer');});openButton.addEventListener('click',()=>window.open(instagramUrl,'_blank','noopener,noreferrer'));backButton.addEventListener('click',()=>{captchaStep.classList.add('hidden');passwordStep.classList.remove('hidden');password.focus()});confirmButton.addEventListener('click',()=>{captchaStatus.textContent='CAPTCHA marked complete. Continue in the Instagram window.';password.value='';});window.addEventListener('pagehide',()=>{password.value='';});
+const introStep = document.getElementById('introStep');
+const captchaStep = document.getElementById('captchaStep');
+const continueButton = document.getElementById('continueButton');
+const backButton = document.getElementById('backButton');
+const confirmButton = document.getElementById('confirmButton');
+const introStatus = document.getElementById('introStatus');
+const captchaStatus = document.getElementById('captchaStatus');
+const instagramUrl = 'https://www.instagram.com/accounts/login/';
+
+function openInstagram() {
+  const opened = window.open(instagramUrl, '_blank', 'noopener,noreferrer');
+  if (!opened) {
+    introStatus.textContent = 'Instagram could not be opened automatically. Use the Open Instagram button on the next screen.';
+  }
+}
+
+continueButton?.addEventListener('click', () => {
+  introStatus.textContent = '';
+  introStep?.classList.add('hidden');
+  captchaStep?.classList.remove('hidden');
+  captchaStep?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  openInstagram();
+});
+
+backButton?.addEventListener('click', () => {
+  captchaStep?.classList.add('hidden');
+  introStep?.classList.remove('hidden');
+  introStatus.textContent = '';
+  continueButton?.focus();
+});
+
+confirmButton?.addEventListener('click', () => {
+  captchaStatus.textContent = 'Acknowledged locally. CAPTCHA completion is not verified by this tool.';
+});

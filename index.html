@@ -1,1 +1,57 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b0b12"><title>Instagram Secure Flow</title><link rel="stylesheet" href="styles.css?v=5"></head><body><main class="shell"><section class="card" id="passwordStep"><div class="eyebrow">INSTAGRAM</div><h1>Secure sign-up</h1><p class="hint">Enter your password to continue. The password is used only on this page and is never sent to this tool.</p><div class="password-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".25" stop-color="#fa7e1e"/><stop offset=".55" stop-color="#d62976"/><stop offset=".8" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect x="3" y="3" width="58" height="58" rx="18" fill="url(#ig)"/><rect x="17" y="17" width="30" height="30" rx="9" fill="none" stroke="white" stroke-width="4"/><circle cx="32" cy="32" r="7" fill="none" stroke="white" stroke-width="4"/><circle cx="43" cy="21" r="2.6" fill="white"/></svg></div><label class="field"><span>Password</span><div class="input-wrap"><input id="password" type="password" autocomplete="new-password" inputmode="text" placeholder="Enter your password" spellcheck="false"><button class="clear-btn" id="clearButton" type="button" aria-label="Clear password">×</button></div></label><div class="quick-actions"><button type="button" id="pasteButton">Paste</button><button type="button" id="copyButton">Copy</button><button type="button" id="selectButton">Select all</button></div><button class="primary" id="nextButton" type="button">Next <span>→</span></button><p class="status" id="passwordStatus" aria-live="polite"></p></section><section class="card hidden" id="captchaStep"><div class="stepbar"><button class="back" id="backButton" type="button">← Back</button><span>STEP 2 OF 2</span></div><div class="password-icon small"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="3" y="3" width="58" height="58" rx="18" fill="#e1306c"/><rect x="17" y="17" width="30" height="30" rx="9" fill="none" stroke="white" stroke-width="4"/><circle cx="32" cy="32" r="7" fill="none" stroke="white" stroke-width="4"/><circle cx="43" cy="21" r="2.6" fill="white"/></svg></div><h2>Complete CAPTCHA</h2><p class="hint">Finish the CAPTCHA in the Instagram browser window. We never solve or bypass security checks.</p><div class="browser-frame"><div class="browser-bar"><span class="traffic">● ● ●</span><span class="address">instagram.com</span></div><div class="browser-body"><div class="captcha-placeholder"><div class="shield">✓</div><strong>CAPTCHA</strong><span>Complete the security check in Instagram.</span><button class="secondary" id="openButton" type="button">Open Instagram</button></div></div></div><button class="primary" id="confirmButton" type="button">I've completed the CAPTCHA</button><p class="status" id="captchaStatus" aria-live="polite"></p></section></main><script src="app.js?v=5"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#09090f">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; frame-src 'none'; media-src 'none'; font-src 'self'; upgrade-insecure-requests">
+  <title>Secure Instagram Handoff</title>
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+  <main class="shell" aria-labelledby="pageTitle">
+    <section class="card" id="introStep">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" role="img"><defs><linearGradient id="igGradient" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".25" stop-color="#fa7e1e"/><stop offset=".55" stop-color="#d62976"/><stop offset=".8" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect x="3" y="3" width="58" height="58" rx="18" fill="url(#igGradient)"/><rect x="17" y="17" width="30" height="30" rx="9" fill="none" stroke="white" stroke-width="4"/><circle cx="32" cy="32" r="7" fill="none" stroke="white" stroke-width="4"/><circle cx="43" cy="21" r="2.6" fill="white"/></svg>
+      </div>
+      <p class="eyebrow">INDEPENDENT WEB UTILITY</p>
+      <h1 id="pageTitle">Continue securely</h1>
+      <p class="hint">This tool only provides a safe handoff to Instagram. Your Instagram password, verification codes, session cookies, and authentication tokens are never requested, stored, or sent by this site.</p>
+      <div class="trust-list" aria-label="Security properties">
+        <div><span aria-hidden="true">✓</span><span>No credential collection</span></div>
+        <div><span aria-hidden="true">✓</span><span>No CAPTCHA bypass or automation</span></div>
+        <div><span aria-hidden="true">✓</span><span>Direct interaction with Instagram</span></div>
+      </div>
+      <button class="primary" id="continueButton" type="button">Continue to Instagram <span aria-hidden="true">↗</span></button>
+      <p class="fine-print">Instagram is a trademark of Meta Platforms, Inc. This independent utility is not affiliated with or endorsed by Instagram or Meta.</p>
+      <p class="status" id="introStatus" aria-live="polite"></p>
+    </section>
+
+    <section class="card hidden" id="captchaStep" aria-labelledby="captchaTitle">
+      <div class="stepbar"><button class="back" id="backButton" type="button">← Back</button><span>STEP 2 OF 2</span></div>
+      <div class="brand-mark small" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><rect x="3" y="3" width="58" height="58" rx="18" fill="#e1306c"/><rect x="17" y="17" width="30" height="30" rx="9" fill="none" stroke="white" stroke-width="4"/><circle cx="32" cy="32" r="7" fill="none" stroke="white" stroke-width="4"/><circle cx="43" cy="21" r="2.6" fill="white"/></svg>
+      </div>
+      <h2 id="captchaTitle">Complete security checks in Instagram</h2>
+      <p class="hint">If Instagram shows a CAPTCHA or security challenge, complete it yourself in the official Instagram page. This tool does not solve, bypass, or automate any security check.</p>
+      <div class="browser-frame" aria-label="Instagram handoff preview">
+        <div class="browser-bar"><span class="traffic" aria-hidden="true">● ● ●</span><span class="address">instagram.com</span></div>
+        <div class="browser-body">
+          <div class="captcha-placeholder">
+            <div class="shield" aria-hidden="true">✓</div>
+            <strong>Security check</strong>
+            <span>Complete any CAPTCHA or verification directly on Instagram.</span>
+            <a class="secondary" href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer">Open Instagram</a>
+          </div>
+        </div>
+      </div>
+      <button class="primary" id="confirmButton" type="button">I completed the check</button>
+      <p class="status" id="captchaStatus" aria-live="polite"></p>
+      <p class="fine-print">This button records only your local acknowledgement. It does not verify that Instagram accepted or completed a CAPTCHA.</p>
+    </section>
+  </main>
+  <script src="app.js?v=6" defer></script>
+</body>
+</html>
