@@ -1,43 +1,50 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0d12" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b12">
+  <meta name="description" content="A lightweight secure browser flow with local password entry and manual CAPTCHA completion.">
   <title>Secure Form Launcher</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="shell" aria-live="polite">
     <section class="card" id="passwordStep">
-      <div class="brand"><span class="dot"></span><span>Secure Flow</span></div>
-      <h1>رمز عبور</h1>
-      <p class="hint">رمز عبور را فقط همین‌جا وارد کنید. مقدار آن ذخیره یا ارسال نمی‌شود.</p>
+      <div class="instagram-mark" aria-label="Instagram">
+        <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
+          <rect x="9" y="9" width="46" height="46" rx="14"></rect>
+          <circle cx="32" cy="32" r="11"></circle>
+          <circle class="lens-dot" cx="45" cy="19" r="3.2"></circle>
+        </svg>
+      </div>
+      <div class="eyebrow">INSTAGRAM</div>
+      <h1>Enter your password</h1>
+      <p class="hint">Your password stays on this device and is never sent to this page.</p>
       <label class="field">
-        <span>رمز عبور</span>
-        <input id="password" type="password" autocomplete="new-password" inputmode="text" placeholder="••••••••" autofocus />
+        <span>Password</span>
+        <input id="password" type="password" autocomplete="new-password" inputmode="text" placeholder="Enter password" autofocus>
       </label>
-      <button class="primary" id="nextButton" type="button">مرحله بعد</button>
-      <p class="status" id="passwordStatus"></p>
+      <button class="primary" id="nextButton" type="button">Next <span aria-hidden="true">→</span></button>
+      <p class="status" id="passwordStatus" role="status"></p>
     </section>
 
     <section class="card hidden" id="captchaStep">
-      <div class="topline"><button class="back" id="backButton" type="button">بازگشت</button><span class="step">مرحله ۲ از ۲</span></div>
-      <h1>تأیید CAPTCHA</h1>
-      <p class="hint">CAPTCHA را خودتان در مرورگر تکمیل کنید. این برنامه CAPTCHA را حل یا دور نمی‌زند.</p>
-      <div class="browser-frame" aria-label="محیط مرورگر برای CAPTCHA">
+      <div class="stepbar"><button class="back" id="backButton" type="button">← Back</button><span>Step 2 of 2</span></div>
+      <div class="captcha-icon" aria-hidden="true">✓</div>
+      <div class="eyebrow">SECURITY CHECK</div>
+      <h1>Complete the CAPTCHA</h1>
+      <p class="hint">Instagram's security check has opened in a new tab. Complete it yourself, then return here.</p>
+      <div class="browser-frame" aria-label="Instagram CAPTCHA step">
         <div class="browser-bar"><span class="traffic">● ● ●</span><span class="address">instagram.com</span></div>
         <div class="browser-body">
-          <div class="captcha-placeholder">
-            <div class="shield">✓</div>
-            <strong>محیط آماده است</strong>
-            <span>CAPTCHA را در پنجره مرورگر بازشده تکمیل کنید.</span>
-            <button class="secondary" id="openButton" type="button">باز کردن مرورگر</button>
-          </div>
+          <strong>CAPTCHA</strong>
+          <span>Complete the security check in the Instagram tab.</span>
+          <button class="secondary" id="openButton" type="button">Open Instagram</button>
         </div>
       </div>
-      <button class="primary" id="confirmButton" type="button">تأیید و ادامه</button>
-      <p class="status" id="captchaStatus"></p>
+      <button class="primary" id="confirmButton" type="button">I've completed the CAPTCHA</button>
+      <p class="status" id="captchaStatus" role="status"></p>
     </section>
   </main>
   <script src="app.js"></script>
